@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class Person {
 
-    private String aName;
-    private LocalDate aDOB;
+    private String  aName;
+    private final LocalDate aDOB;
     private String aEmailAddress;
     private boolean aPurchasedParkingPass;
 
