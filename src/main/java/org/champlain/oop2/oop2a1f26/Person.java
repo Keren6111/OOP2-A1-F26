@@ -4,12 +4,33 @@ import java.time.LocalDate;
 
 public class Person {
 
-    private String  aName;
+    private final String aName;
     private final LocalDate aDOB;
-    private String aEmailAddress;
+    private final String aEmailAddress;
     private boolean aPurchasedParkingPass;
 
     public Person(String pName, LocalDate pDOB, String pEmailAddress) {
+
+        if (pName == null || pName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty.");
+        }
+
+        if (pDOB == null) {
+            throw new IllegalArgumentException("Date of birth cannot be null.");
+        }
+
+        if (pDOB.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("A person cannot be born in the future.");
+        }
+
+        if (pEmailAddress == null || pEmailAddress.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email address cannot be null or empty.");
+        }
+
+        if (!pEmailAddress.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+            throw new IllegalArgumentException("Email address format is invalid.");
+        }
+
         this.aName = pName;
         this.aDOB = pDOB;
         this.aEmailAddress = pEmailAddress;
